@@ -500,6 +500,10 @@ struct llm_graph_context {
 
     std::unique_ptr<llm_graph_result> res;
 
+    // TODO: tmp
+    ggml_cgraph * gf = nullptr;
+    mutable std::vector<ggml_tensor *> cur_experts;
+
     llm_graph_context(const llm_graph_params & params);
     virtual ~llm_graph_context() = default;
 
