@@ -2258,7 +2258,7 @@ common_params_context common_params_parser_init(common_params & params, llama_ex
         [](common_params & params, const std::string & value) {
             GGML_UNUSED(params);
             GGML_UNUSED(value);
-            LOG_WRN("DEPRECATED: --defrag-thold is deprecated and no longer necessary to specify");
+            LOG_WRN("DEPRECATED: --defrag-thold is deprecated and no longer necessary to specify\n");
         }
     ).set_env("LLAMA_ARG_DEFRAG_THOLD"));
     add_opt(common_arg(
