@@ -1247,3 +1247,30 @@ jobs:
               -DGGML_CANN=on \
               -DSOC_TYPE=${{ matrix.device }}
           cmake --build build -j $(nproc)
+
+jobs:
+  macOS-latest-cmake-arm64:
+    runs-on: [self-hosted, macOS, ARM64]
+
+    steps:
+      - name: Clone
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: ccache
+        uses: ggml-org/ccache-action@v1.2.16
+        with:
+          key: macOS-latest-cmake-arm64
+          evict-old-files: 1d
+
+      - name: Dependencies
+        id: depends
+        continue-on-error: true
+        run: |
+          brew update
+          brew install curl
+
+      - name: Test
+        id: ggml-ci
+        run: |
+          GG_BUILD_CLOUD=1 GG_BUILD_METAL=1 bash ./ci/run.sh ./tmp/results ./tmp/mnt
