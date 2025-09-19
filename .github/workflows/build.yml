@@ -1248,8 +1248,7 @@ jobs:
               -DSOC_TYPE=${{ matrix.device }}
           cmake --build build -j $(nproc)
 
-jobs:
-  macOS-latest-cmake-arm64:
+  ggml-ci-mac:
     runs-on: [self-hosted, macOS, ARM64]
 
     steps:
